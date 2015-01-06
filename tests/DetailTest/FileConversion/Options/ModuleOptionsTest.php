@@ -13,7 +13,12 @@ class ModuleOptionsTest extends OptionsTestCase
     {
         $this->options = $this->getOptions(
             'Detail\FileConversion\Options\ModuleOptions',
-            array('getClient', 'setClient', 'getJobBuilder', 'setJobBuilder')
+            array(
+                'getClient',
+                'setClient',
+                'getJobBuilder',
+                'setJobBuilder',
+            )
         );
     }
 

@@ -1,6 +1,8 @@
 <?php
 
-namespace DetailTest\FileConversion\Options;
+namespace DetailTest\FileConversion\Options\Job;
+
+use DetailTest\FileConversion\Options\OptionsTestCase;
 
 class JobBuilderOptionsTest extends OptionsTestCase
 {
@@ -19,7 +21,7 @@ class JobBuilderOptionsTest extends OptionsTestCase
                 'getJobClass',
                 'setJobClass',
                 'getActionClass',
-                'setActionClass'
+                'setActionClass',
             )
         );
     }
