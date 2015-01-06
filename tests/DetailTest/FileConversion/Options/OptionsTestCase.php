@@ -13,7 +13,7 @@ abstract class OptionsTestCase extends TestCase
      */
     protected function getOptions($class, array $methods)
     {
-        $mockedMethods = array_diff($this->getMethods($class),$methods);
+        $mockedMethods = array_diff($this->getMethods($class), $methods);
 
         return $this->getMock($class, $mockedMethods);
     }
