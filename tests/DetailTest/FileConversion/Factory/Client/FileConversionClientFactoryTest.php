@@ -19,11 +19,17 @@ class FileConversionClientFactoryTest extends TestCase
 
     protected function createFileConversionClient()
     {
+        $clientOptions = $this->getMock('Detail\FileConversion\Options\Client\FileConversionClientOptions');
+        $clientOptions
+            ->expects($this->any())
+            ->method('toArray')
+            ->will($this->returnValue(array()));
+
         $moduleOptions = $this->getMock('Detail\FileConversion\Options\ModuleOptions');
         $moduleOptions
             ->expects($this->any())
-            ->method('toArray')
-            ->will($this->returnValue(array('application_id' => 'test-id')));
+            ->method('getClient')
+            ->will($this->returnValue($clientOptions));
 
         $jobBuilder = $this->getMock('Detail\FileConversion\Job\JobBuilder');
 

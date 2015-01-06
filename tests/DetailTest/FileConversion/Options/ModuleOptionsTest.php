@@ -15,21 +15,24 @@ class ModuleOptionsTest extends TestCase
     {
         $mockedMethods = array_diff(
             $this->getMethods('Detail\FileConversion\Options\ModuleOptions'),
-            array('getApplicationId', 'setApplicationId')
+            array('getClient', 'setClient', 'getJobBuilder', 'setJobBuilder')
         );
 
         $this->options = $this->getMock('Detail\FileConversion\Options\ModuleOptions', $mockedMethods);
     }
 
-    public function testApplicationIdCanBeSet()
+    public function testClientCanBeSet()
     {
-        $applicationId = 'test-id';
+        $clientOptions = array('base_url' => 'some-url');
 
-        $this->assertNull($this->options->getApplicationId());
+        $this->assertNull($this->options->getClient());
 
-        $this->options->setApplicationId($applicationId);
+        $this->options->setClient($clientOptions);
 
-        $this->assertEquals($applicationId, $this->options->getApplicationId());
+        $client = $this->options->getClient();
+
+        $this->assertInstanceOf('Detail\FileConversion\Options\Client\FileConversionClientOptions', $client);
+        $this->assertEquals($clientOptions['base_url'], $client->getBaseUrl());
     }
 
     /**
