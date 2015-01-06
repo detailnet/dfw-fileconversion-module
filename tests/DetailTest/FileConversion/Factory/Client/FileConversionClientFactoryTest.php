@@ -1,6 +1,6 @@
 <?php
 
-namespace DetailTest\FileConversion\Factory\Options;
+namespace DetailTest\FileConversion\Factory\Client;
 
 use PHPUnit_Framework_TestCase as TestCase;
 
@@ -15,6 +15,7 @@ class FileConversionClientFactoryTest extends TestCase
         $client = $this->createFileConversionClient();
 
         $this->assertInstanceOf('Detail\FileConversion\Client\FileConversionClient', $client);
+        $this->assertEquals('some-url', $client->getBaseUrl());
     }
 
     protected function createFileConversionClient()
@@ -23,7 +24,7 @@ class FileConversionClientFactoryTest extends TestCase
         $clientOptions
             ->expects($this->any())
             ->method('toArray')
-            ->will($this->returnValue(array()));
+            ->will($this->returnValue(array('base_url' => 'some-url')));
 
         $moduleOptions = $this->getMock('Detail\FileConversion\Options\ModuleOptions');
         $moduleOptions
