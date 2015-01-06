@@ -44,28 +44,4 @@ class ModuleOptionsTest extends OptionsTestCase
         $this->assertInstanceOf('Detail\FileConversion\Options\Job\JobBuilderOptions', $jobBuilder);
         $this->assertEquals($jobBuilderOptions['default_options'], $jobBuilder->getDefaultOptions());
     }
-
-    /**
-     * Helper to get all public and abstract methods of a class.
-     *
-     * This includes methods of parent classes.
-     *
-     * @param string $class
-     * @param bool $autoload
-     * @return array
-     */
-    protected function getMethods($class, $autoload = true)
-    {
-        $methods = array();
-
-        if (class_exists($class, $autoload) || interface_exists($class, $autoload)) {
-            $reflector = new \ReflectionClass($class);
-
-            foreach ($reflector->getMethods(\ReflectionMethod::IS_PUBLIC | \ReflectionMethod::IS_ABSTRACT) as $method) {
-                $methods[] = $method->getName();
-            }
-        }
-
-        return $methods;
-    }
 }
