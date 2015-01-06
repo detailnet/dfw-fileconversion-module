@@ -7,11 +7,11 @@ return array(
         'aliases' => array(
         ),
         'invokables' => array(
-            'Detail\FileConversion\Job\JobBuilder' => 'Detail\FileConversion\Job\JobBuilder',
         ),
         'factories' => array(
             'Detail\FileConversion\Client\FileConversionClient' => 'Detail\FileConversion\Factory\Client\FileConversionClientFactory',
-            'Detail\FileConversion\Options\ModuleOptions' => 'Detail\FileConversion\Factory\Options\ModuleOptionsFactory',
+            'Detail\FileConversion\Job\JobBuilder'              => 'Detail\FileConversion\Factory\Job\JobBuilderFactory',
+            'Detail\FileConversion\Options\ModuleOptions'       => 'Detail\FileConversion\Factory\Options\ModuleOptionsFactory',
         ),
         'initializers' => array(
         ),
@@ -19,5 +19,11 @@ return array(
         ),
     ),
     'detail_fileconversion' => array(
+        'client' => array(
+            'base_url' => 'https://file-conversion.dws.detailnet.ch/api',
+        ),
+        'job_builder' => array(
+            'default_options' => array(),
+        ),
     ),
 );

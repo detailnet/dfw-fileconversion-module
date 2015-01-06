@@ -7,23 +7,44 @@ use Detail\Core\Options\AbstractOptions;
 class ModuleOptions extends AbstractOptions
 {
     /**
-     * @var string
+     * @var Client\FileConversionClientOptions
      */
-    protected $applicationId;
+    protected $client;
 
     /**
-     * @return string
+     * @var Job\JobBuilderOptions
      */
-    public function getApplicationId()
+    protected $jobBuilder;
+
+    /**
+     * @return Client\FileConversionClientOptions
+     */
+    public function getClient()
     {
-        return $this->applicationId;
+        return $this->client;
     }
 
     /**
-     * @param string $applicationId
+     * @param array $client
      */
-    public function setApplicationId($applicationId)
+    public function setClient(array $client)
     {
-        $this->applicationId = $applicationId;
+        $this->client = new Client\FileConversionClientOptions($client);
+    }
+
+    /**
+     * @return Job\JobBuilderOptions
+     */
+    public function getJobBuilder()
+    {
+        return $this->jobBuilder;
+    }
+
+    /**
+     * @param array $jobBuilder
+     */
+    public function setJobBuilder(array $jobBuilder)
+    {
+        $this->jobBuilder = new Job\JobBuilderOptions($jobBuilder);
     }
 }
