@@ -2,9 +2,7 @@
 
 namespace DetailTest\FileConversion\Options;
 
-use PHPUnit_Framework_TestCase as TestCase;
-
-class ModuleOptionsTest extends TestCase
+class ModuleOptionsTest extends OptionsTestCase
 {
     /**
      * @var \Detail\FileConversion\Options\ModuleOptions
@@ -13,12 +11,10 @@ class ModuleOptionsTest extends TestCase
 
     protected function setUp()
     {
-        $mockedMethods = array_diff(
-            $this->getMethods('Detail\FileConversion\Options\ModuleOptions'),
+        $this->options = $this->getOptions(
+            'Detail\FileConversion\Options\ModuleOptions',
             array('getClient', 'setClient', 'getJobBuilder', 'setJobBuilder')
         );
-
-        $this->options = $this->getMock('Detail\FileConversion\Options\ModuleOptions', $mockedMethods);
     }
 
     public function testClientCanBeSet()
@@ -33,6 +29,20 @@ class ModuleOptionsTest extends TestCase
 
         $this->assertInstanceOf('Detail\FileConversion\Options\Client\FileConversionClientOptions', $client);
         $this->assertEquals($clientOptions['base_url'], $client->getBaseUrl());
+    }
+
+    public function testJobBuilderCanBeSet()
+    {
+        $jobBuilderOptions = array('default_options' => array('key' => 'value'));
+
+        $this->assertNull($this->options->getJobBuilder());
+
+        $this->options->setJobBuilder($jobBuilderOptions);
+
+        $jobBuilder = $this->options->getJobBuilder();
+
+        $this->assertInstanceOf('Detail\FileConversion\Options\Job\JobBuilderOptions', $jobBuilder);
+        $this->assertEquals($jobBuilderOptions['default_options'], $jobBuilder->getDefaultOptions());
     }
 
     /**
