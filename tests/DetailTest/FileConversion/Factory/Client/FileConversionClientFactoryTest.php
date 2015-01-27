@@ -32,11 +32,11 @@ class FileConversionClientFactoryTest extends TestCase
             ->method('getClient')
             ->will($this->returnValue($clientOptions));
 
-        $jobBuilder = $this->getMock('Detail\FileConversion\Job\JobBuilder');
+        $jobBuilder = $this->getMock('Detail\FileConversion\Client\Job\JobBuilder');
 
         $serviceManager = new ServiceManager();
         $serviceManager->setService('Detail\FileConversion\Options\ModuleOptions', $moduleOptions);
-        $serviceManager->setService('Detail\FileConversion\Job\JobBuilder', $jobBuilder);
+        $serviceManager->setService('Detail\FileConversion\Client\Job\JobBuilder', $jobBuilder);
 
         $factory = new FileConversionClientFactory();
 
