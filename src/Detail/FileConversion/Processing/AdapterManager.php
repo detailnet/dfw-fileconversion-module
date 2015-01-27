@@ -9,8 +9,8 @@ use Zend\ServiceManager\AbstractPluginManager;
  *
  * Enforces that adapters retrieved are instances of AdapterInterface.
  */
-class AdapterManager extends AbstractPluginManager
-    implements AdapterManagerInterface
+class AdapterManager extends AbstractPluginManager implements
+    AdapterManagerInterface
 {
     /**
      * Whether or not to share by default
