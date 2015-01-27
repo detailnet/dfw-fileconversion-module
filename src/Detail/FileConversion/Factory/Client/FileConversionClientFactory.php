@@ -20,7 +20,7 @@ class FileConversionClientFactory implements FactoryInterface
 
         $clientOptions = $moduleOptions->getClient();
 
-        /** @var \Detail\FileConversion\Job\JobBuilder $jobBuilder */
+        /** @var \Detail\FileConversion\Client\Job\JobBuilder $jobBuilder */
         $jobBuilder = $serviceLocator->get('Detail\FileConversion\Job\JobBuilder');
 
         return FileConversionClient::factory($clientOptions->toArray(), $jobBuilder);

@@ -29,8 +29,24 @@ return array(
         'task_processor' => array(
             'default_adapter' => 'internal',
             'adapter_factories' => array(
-                'blitline' => 'Detail\FileConversion\Factory\Processing\Adapter\BlitlineAdaperFactory',
-                'internal' => 'Detail\FileConversion\Factory\Processing\Adapter\InternalAdaperFactory',
+                'blitline' => 'Detail\FileConversion\Factory\Processing\Adapter\BlitlineAdapterFactory',
+                'internal' => 'Detail\FileConversion\Factory\Processing\Adapter\InternalAdapterFactory',
+            ),
+            'adapters' => array(
+                'blitline' => array(
+                    'client' => 'Detail\Blitline\Client\BlitlineClient',
+                    'client_options' => array(
+//                        'postback_url' => '',
+                    ),
+//                    'job_creator' => '',
+                ),
+                'internal' => array(
+                    'client' => 'Detail\FileConversion\Client\FileConversionClient',
+                    'client_options' => array(
+//                        'notification_url' => '',
+                    ),
+//                    'job_creator' => '',
+                ),
             ),
         ),
     ),

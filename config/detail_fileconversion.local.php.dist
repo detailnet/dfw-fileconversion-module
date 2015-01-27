@@ -8,5 +8,21 @@ return array(
         'job_builder' => array(
             'default_options' => array(),
         ),
+        'task_processor' => array(
+            'adapters' => array(
+                'blitline' => array(
+                    'client_options' => array(
+                        'postback_url' => 'http://postback.url',
+                    ),
+                    'job_creator' => 'Job\Creator\Class',
+                ),
+                'internal' => array(
+                    'client_options' => array(
+                        'notification_url' => 'http://notification.url',
+                    ),
+                    'job_creator' => 'Job\Creator\Class',
+                ),
+            ),
+        ),
     ),
 );

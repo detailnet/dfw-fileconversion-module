@@ -5,9 +5,9 @@ namespace Detail\FileConversion\Factory\Processing\Adapter;
 use Zend\ServiceManager\FactoryInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
 
-use Detail\FileConversion\Processing\Adapter\BlitlineAdapter as Adapter;
+use Detail\FileConversion\Processing\Adapter\InternalAdapter as Adapter;
 
-class BlitlineAdapterFactory implements FactoryInterface
+class InternalAdapterFactory implements FactoryInterface
 {
     /**
      * {@inheritDoc}
@@ -22,14 +22,14 @@ class BlitlineAdapterFactory implements FactoryInterface
 
         /** @var \Detail\FileConversion\Options\Processing\Adapter\GenericAdapterOptions $adapterOptions */
         $adapterOptions = $taskProcessingOptions->getAdapter(
-            'blitline',
+            'internal',
             'Detail\FileConversion\Options\Processing\Adapter\GenericAdapterOptions'
         );
 
-        /** @var \Detail\Blitline\Client\BlitlineClient $client */
+        /** @var \Detail\FileConversion\Client\FileConversionClient $client */
         $client = $serviceLocator->get($adapterOptions->getClient());
 
-        /** @var \Detail\FileConversion\Processing\Adapter\BlitlineJobCreatorInterface $jobCreator */
+        /** @var \Detail\FileConversion\Processing\Adapter\InternalJobCreatorInterface $jobCreator */
         $jobCreator = $serviceLocator->get($adapterOptions->getJobCreator());
 
         $adapter = new Adapter($client, $jobCreator, $adapterOptions->getClientOptions());
