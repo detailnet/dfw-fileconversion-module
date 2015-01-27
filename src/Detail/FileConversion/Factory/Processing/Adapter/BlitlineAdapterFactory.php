@@ -4,6 +4,7 @@ namespace Detail\FileConversion\Factory\Processing\Adapter;
 
 use Zend\ServiceManager\FactoryInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
+use Zend\ServiceManager\ServiceLocatorAwareInterface;
 
 use Detail\FileConversion\Processing\Adapter\BlitlineAdapter as Adapter;
 
@@ -15,6 +16,10 @@ class BlitlineAdapterFactory implements FactoryInterface
      */
     public function createService(ServiceLocatorInterface $serviceLocator)
     {
+        if ($serviceLocator instanceof ServiceLocatorAwareInterface) {
+            $serviceLocator = $serviceLocator->getServiceLocator();
+        }
+
         /** @var \Detail\FileConversion\Options\ModuleOptions $moduleOptions */
         $moduleOptions = $serviceLocator->get('Detail\FileConversion\Options\ModuleOptions');
 
