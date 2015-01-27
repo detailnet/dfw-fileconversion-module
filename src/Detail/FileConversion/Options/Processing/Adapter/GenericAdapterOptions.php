@@ -14,7 +14,7 @@ class GenericAdapterOptions extends AbstractOptions
     /**
      * @var array
      */
-    protected $clientOptions = array();
+    protected $options = array();
 
     /**
      * @var string
@@ -40,17 +40,17 @@ class GenericAdapterOptions extends AbstractOptions
     /**
      * @return array
      */
-    public function getClientOptions()
+    public function getOptions()
     {
-        return $this->clientOptions;
+        return $this->options;
     }
 
     /**
-     * @param array $clientOptions
+     * @param array $options
      */
-    public function setClientOptions(array $clientOptions)
+    public function setOptions(array $options)
     {
-        $this->clientOptions = $clientOptions;
+        $this->options = $options;
     }
 
     /**

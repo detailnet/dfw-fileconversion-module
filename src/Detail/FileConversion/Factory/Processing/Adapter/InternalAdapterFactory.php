@@ -32,7 +32,7 @@ class InternalAdapterFactory implements FactoryInterface
         /** @var \Detail\FileConversion\Processing\Adapter\InternalJobCreatorInterface $jobCreator */
         $jobCreator = $serviceLocator->get($adapterOptions->getJobCreator());
 
-        $adapter = new Adapter($client, $jobCreator, $adapterOptions->getClientOptions());
+        $adapter = new Adapter($client, $jobCreator, $adapterOptions->getOptions());
 
         return $adapter;
     }
