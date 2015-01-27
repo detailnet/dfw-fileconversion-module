@@ -10,8 +10,9 @@ return array(
         ),
         'factories' => array(
             'Detail\FileConversion\Client\FileConversionClient' => 'Detail\FileConversion\Factory\Client\FileConversionClientFactory',
-            'Detail\FileConversion\Job\JobBuilder'              => 'Detail\FileConversion\Factory\Job\JobBuilderFactory',
+            'Detail\FileConversion\Client\Job\JobBuilder'       => 'Detail\FileConversion\Factory\Client\Job\JobBuilderFactory',
             'Detail\FileConversion\Options\ModuleOptions'       => 'Detail\FileConversion\Factory\Options\ModuleOptionsFactory',
+            'Detail\FileConversion\Processing\TaskProcessor'    => 'Detail\FileConversion\Factory\Processing\TaskProcessorFactory',
         ),
         'initializers' => array(
         ),
@@ -24,6 +25,13 @@ return array(
         ),
         'job_builder' => array(
             'default_options' => array(),
+        ),
+        'task_processor' => array(
+            'default_adapter' => 'internal',
+            'adapter_factories' => array(
+                'blitline' => 'Detail\FileConversion\Factory\Processing\Adapter\BlitlineAdaperFactory',
+                'internal' => 'Detail\FileConversion\Factory\Processing\Adapter\InternalAdaperFactory',
+            ),
         ),
     ),
 );
