@@ -36,14 +36,12 @@ return array(
                 'blitline' => array(
                     'client' => 'Detail\Blitline\Client\BlitlineClient',
                     'client_options' => array(
-//                        'postback_url' => '',
                     ),
 //                    'job_creator' => '',
                 ),
                 'internal' => array(
                     'client' => 'Detail\FileConversion\Client\FileConversionClient',
                     'client_options' => array(
-//                        'notification_url' => '',
                     ),
 //                    'job_creator' => '',
                 ),

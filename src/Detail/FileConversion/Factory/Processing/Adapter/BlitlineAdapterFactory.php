@@ -30,7 +30,7 @@ class BlitlineAdapterFactory implements FactoryInterface
         $client = $serviceLocator->get($adapterOptions->getClient());
 
         /** @var \Detail\FileConversion\Processing\Adapter\BlitlineJobCreatorInterface $jobCreator */
-        $jobCreator = $serviceLocator->get($adapterOptions->getJobCreator());
+        $jobCreator = $serviceLocator->get($adapterOptions->getJobCreator()); /** @todo We should check if it is configured... */
 
         $adapter = new Adapter($client, $jobCreator, $adapterOptions->getClientOptions());
 
