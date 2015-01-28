@@ -1,11 +1,11 @@
 <?php
 
-namespace Detail\FileConversion\Factory\Job;
+namespace Detail\FileConversion\Factory\Client\Job;
 
 use Zend\ServiceManager\FactoryInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
 
-use Detail\FileConversion\Job\JobBuilder;
+use Detail\FileConversion\Client\Job\JobBuilder;
 
 class JobBuilderFactory implements FactoryInterface
 {

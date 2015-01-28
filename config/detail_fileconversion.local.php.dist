@@ -8,5 +8,19 @@ return array(
         'job_builder' => array(
             'default_options' => array(),
         ),
+        'task_processor' => array(
+            'adapters' => array(
+                'blitline' => array(
+                    'options' => array(
+                    ),
+                    'job_creator' => 'Job\Creator\Class',
+                ),
+                'internal' => array(
+                    'options' => array(
+                    ),
+                    'job_creator' => 'Job\Creator\Class',
+                ),
+            ),
+        ),
     ),
 );

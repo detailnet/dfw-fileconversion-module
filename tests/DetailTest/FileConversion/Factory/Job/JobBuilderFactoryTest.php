@@ -6,7 +6,7 @@ use PHPUnit_Framework_TestCase as TestCase;
 
 use Zend\ServiceManager\ServiceManager;
 
-use Detail\FileConversion\Factory\Job\JobBuilderFactory;
+use Detail\FileConversion\Factory\Client\Job\JobBuilderFactory;
 
 class JobBuilderFactoryTest extends TestCase
 {
@@ -14,7 +14,7 @@ class JobBuilderFactoryTest extends TestCase
     {
         $jobBuilder = $this->createJobBuilder();
 
-        $this->assertInstanceOf('Detail\FileConversion\Job\JobBuilder', $jobBuilder);
+        $this->assertInstanceOf('Detail\FileConversion\Client\Job\JobBuilder', $jobBuilder);
         $this->assertEquals(array('key' => 'value'), $jobBuilder->getDefaultOptions());
         $this->assertEquals('SomeJobClass', $jobBuilder->getJobClass());
         $this->assertEquals('SomeActionClass', $jobBuilder->getActionClass());

@@ -17,6 +17,11 @@ class ModuleOptions extends AbstractOptions
     protected $jobBuilder;
 
     /**
+     * @var Processing\TaskProcessorOptions
+     */
+    protected $taskProcessor;
+
+    /**
      * @return Client\FileConversionClientOptions
      */
     public function getClient()
@@ -46,5 +51,21 @@ class ModuleOptions extends AbstractOptions
     public function setJobBuilder(array $jobBuilder)
     {
         $this->jobBuilder = new Job\JobBuilderOptions($jobBuilder);
+    }
+
+    /**
+     * @return Processing\TaskProcessorOptions
+     */
+    public function getTaskProcessor()
+    {
+        return $this->taskProcessor;
+    }
+
+    /**
+     * @param array $taskProcessor
+     */
+    public function setTaskProcessor(array $taskProcessor)
+    {
+        $this->taskProcessor = new Processing\TaskProcessorOptions($taskProcessor);
     }
 }
