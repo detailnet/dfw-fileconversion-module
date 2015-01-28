@@ -28,10 +28,10 @@
         "zendframework/zend-servicemanager": "2.*",
         "detailnet/dfw-core": "~0.1.1",
         "detailnet/dfw-log": "~0.2.0",
-        "detailnet/dfw-fileconversion": "dev-feature/processing"
+        "detailnet/dfw-fileconversion": "~0.3.0"
     },
     "require-dev": {
-        "phpunit/phpunit": "~4.4.4",
+        "phpunit/phpunit": "~4.4.5",
         "squizlabs/php_codesniffer" : "~2.2.0",
         "phpmd/phpmd": "~2.1.3",
         "satooshi/php-coveralls": "dev-master",
