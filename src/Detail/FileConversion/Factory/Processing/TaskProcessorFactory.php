@@ -27,6 +27,10 @@ class TaskProcessorFactory implements FactoryInterface
             $adapters->setFactory($adapterType, $adapterFactory);
         }
 
-        return new Processing\TaskProcessor($adapters, $taskProcessorOptions->getDefaultAdapter());
+        return new Processing\TaskProcessor(
+            $adapters,
+            $taskProcessorOptions->getDefaultAdapter(),
+            $taskProcessorOptions->getPauseOnIncident()
+        );
     }
 }

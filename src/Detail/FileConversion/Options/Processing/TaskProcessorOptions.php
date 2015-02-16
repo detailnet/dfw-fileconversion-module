@@ -2,6 +2,8 @@
 
 namespace Detail\FileConversion\Options\Processing;
 
+use DateInterval;
+
 use Detail\Core\Options\AbstractOptions;
 use Detail\FileConversion\Exception;
 
@@ -21,6 +23,11 @@ class TaskProcessorOptions extends AbstractOptions
      * @var array
      */
     protected $adapters = array();
+
+    /**
+     * @var DateInterval|false
+     */
+    protected $pauseOnIncident = false;
 
     /**
      * @return string
@@ -100,5 +107,29 @@ class TaskProcessorOptions extends AbstractOptions
     public function setAdapters(array $adapters)
     {
         $this->adapters = $adapters;
+    }
+
+    /**
+     * @return DateInterval|false
+     */
+    public function getPauseOnIncident()
+    {
+        return $this->pauseOnIncident;
+    }
+
+    /**
+     * @param DateInterval|false $pauseOnIncident
+     */
+    public function setPauseOnIncident($pauseOnIncident)
+    {
+        if (is_string($pauseOnIncident)) {
+            $pauseOnIncident = DateInterval::createFromDateString($pauseOnIncident);
+        } else if (!$pauseOnIncident instanceof DateInterval && $pauseOnIncident !== false) {
+            throw new Exception\ConfigException(
+                'Config options "pause_on_incident" must be false, a valid date string or DateInterval object'
+            );
+        }
+
+        $this->pauseOnIncident = $pauseOnIncident;
     }
 }
