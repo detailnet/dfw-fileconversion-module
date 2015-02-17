@@ -46,6 +46,7 @@ return array(
 //                    'job_creator' => '',
                 ),
             ),
+            'pause_on_incident' => false,
         ),
     ),
 );
