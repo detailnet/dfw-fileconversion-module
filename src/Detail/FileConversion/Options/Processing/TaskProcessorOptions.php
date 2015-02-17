@@ -124,7 +124,7 @@ class TaskProcessorOptions extends AbstractOptions
     {
         if (is_string($pauseOnIncident)) {
             $pauseOnIncident = DateInterval::createFromDateString($pauseOnIncident);
-        } else if (!$pauseOnIncident instanceof DateInterval && $pauseOnIncident !== false) {
+        } elseif (!$pauseOnIncident instanceof DateInterval && $pauseOnIncident !== false) {
             throw new Exception\ConfigException(
                 'Config options "pause_on_incident" must be false, a valid date string or DateInterval object'
             );
