@@ -21,6 +21,7 @@ return array(
                     'job_creator' => 'Job\Creator\Class',
                 ),
             ),
+            'pause_on_incident' => '5 minutes',
         ),
     ),
 );
