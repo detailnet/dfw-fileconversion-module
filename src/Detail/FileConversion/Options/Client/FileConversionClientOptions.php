@@ -12,6 +12,16 @@ class FileConversionClientOptions extends AbstractOptions
     protected $baseUrl;
 
     /**
+     * @var string
+     */
+    protected $dwsAppId;
+
+    /**
+     * @var string
+     */
+    protected $dwsAppKey;
+
+    /**
      * @return string
      */
     public function getBaseUrl()
@@ -25,5 +35,37 @@ class FileConversionClientOptions extends AbstractOptions
     public function setBaseUrl($baseUrl)
     {
         $this->baseUrl = $baseUrl;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDwsAppId()
+    {
+        return $this->dwsAppId;
+    }
+
+    /**
+     * @param string $dwsAppId
+     */
+    public function setDwsAppId($dwsAppId)
+    {
+        $this->dwsAppId = $dwsAppId;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDwsAppKey()
+    {
+        return $this->dwsAppKey;
+    }
+
+    /**
+     * @param string $dwsAppKey
+     */
+    public function setDwsAppKey($dwsAppKey)
+    {
+        $this->dwsAppKey = $dwsAppKey;
     }
 }
