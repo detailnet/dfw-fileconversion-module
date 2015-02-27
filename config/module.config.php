@@ -41,21 +41,16 @@ return array(
                     ),
                     'job_creation' => array(
 //                        'creator' => '',
-//                        'function_abstract_factory' => '',
-//                        'function_factories' => array(
-//                            'standard' => '',
-//                        ),
                         // Function presets stored by action name
                         'functions' => array(
                             'thumbnail' => array(
-//                                'function' => 'script',
                                 'function' => 'Detail\FileConversion\Processing\Adapter\Blitline\Func\ScriptFunction',
                                 'options' => array(
                                     'files' => array(
                                         // The script
-                                        'https://raw.githubusercontent.com/detailnet/imagemagick-scripts/master/convert_image.sh',
+                                        'script' => 'https://raw.githubusercontent.com/detailnet/imagemagick-scripts/master/convert_image.sh',
                                         // The target color profile for the script
-                                        'https://raw.githubusercontent.com/detailnet/imagemagick-scripts/master/profiles/sRGB.icm',
+                                        'srgb_profile' => 'https://raw.githubusercontent.com/detailnet/imagemagick-scripts/master/profiles/sRGB.icm',
                                     ),
                                     // See:
                                     // - http://www.blitline.com/docs/scripts

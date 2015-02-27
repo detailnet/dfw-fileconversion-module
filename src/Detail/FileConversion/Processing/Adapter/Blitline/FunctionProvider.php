@@ -48,12 +48,11 @@ class FunctionProvider extends AbstractPluginManager implements
 
     /**
      * @param string $action
-     * @param array $params
      * @return Func\FunctionInterface
      */
-    public function getFunction($action, array $params = array())
+    public function getFunction($action)
     {
-        return $this->get($action, $params);
+        return $this->get($action);
     }
 
     /**
