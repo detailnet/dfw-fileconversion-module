@@ -6,10 +6,13 @@ use Zend\ServiceManager\FactoryInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
 use Zend\ServiceManager\ServiceLocatorAwareInterface;
 
+use Detail\FileConversion\Exception;
 use Detail\FileConversion\Processing\Adapter\Blitline\BlitlineAdapter as Adapter;
 
 class BlitlineAdapterFactory implements FactoryInterface
 {
+    use BlitlineAdapterOptionsTrait;
+
     /**
      * {@inheritDoc}
      * @return Adapter
@@ -20,24 +23,20 @@ class BlitlineAdapterFactory implements FactoryInterface
             $serviceLocator = $serviceLocator->getServiceLocator();
         }
 
-        /** @var \Detail\FileConversion\Options\ModuleOptions $moduleOptions */
-        $moduleOptions = $serviceLocator->get('Detail\FileConversion\Options\ModuleOptions');
-
-        $taskProcessingOptions = $moduleOptions->getTaskProcessor();
-
-        /** @var \Detail\FileConversion\Options\Processing\Adapter\Blitline\BlitlineAdapterOptions $adapterOptions */
-        $adapterOptions = $taskProcessingOptions->getAdapter(
-            'blitline',
-            'Detail\FileConversion\Options\Processing\Adapter\Blitline\BlitlineAdapterOptions'
-        );
+        $adapterOptions = $this->getAdapterOptions($serviceLocator);
 
         /** @var \Detail\Blitline\Client\BlitlineClient $client */
         $client = $serviceLocator->get($adapterOptions->getClient());
 
         $jobCreationOptions = $adapterOptions->getJobCreation();
+        $jobCreatorClass = $jobCreationOptions->getCreator();
+
+        if (!$jobCreatorClass) {
+            throw new Exception\ConfigException('No Blitline job creator class defined');
+        }
 
         /** @var \Detail\FileConversion\Processing\Adapter\Blitline\BlitlineJobCreatorInterface $jobCreator */
-        $jobCreator = $serviceLocator->get($jobCreationOptions->getCreator()); /** @todo We should check if it is configured... */
+        $jobCreator = $serviceLocator->get($jobCreatorClass);
 
         $adapter = new Adapter($client, $jobCreator, $adapterOptions->getOptions());
 

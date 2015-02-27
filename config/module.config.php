@@ -3,7 +3,7 @@
 return array(
     'service_manager' => array(
         'abstract_factories' => array(
-            'Detail\FileConversion\Factory\Processing\Adapter\Blitline\BlitlineJobCreatorAbstractFactory',
+//            'Detail\FileConversion\Factory\Processing\Adapter\Blitline\BlitlineJobCreatorAbstractFactory',
         ),
         'aliases' => array(
         ),
@@ -64,66 +64,66 @@ return array(
                                     //   For usage of the conversion script
                                     'executable' => 'convert_image.sh',
                                     // Key is the option name; order is relevant for building the command
-                                    'options' => array(
+                                    'executable_options' => array(
                                         // Input file
                                         'input_file' => array(
                                             'argument' => 'i',
                                             'type' => 'value',
-                                            'defaultValue' => 'input.png',
+                                            'value' => 'input.png',
                                         ),
                                         // Target profile
                                         'target_profile_file' => array(
                                             'argument' => 't',
                                             'type' => 'value',
-                                            'defaultValue' => 'sRGB.icm', // Make sure it's available via "files"
+                                            'value' => 'sRGB.icm', // Make sure it's available via "files"
                                         ),
                                         // Page
                                         'page' => array(
                                             'argument' => 'p',
                                             'type' => 'value',
-                                            'defaultValue' => 0,
+                                            'value' => 0,
                                         ),
                                         // Vector formats
                                         'vector_formats' => array(
                                             'argument' => 'fv',
                                             'type' => 'value',
-                                            'defaultValue' => 'MSVG,SVG,SVGZ,AI,EPDF,EPI,EPSF,EPSI,PCT,PDFA,PICT,PS',
+                                            'value' => 'MSVG,SVG,SVGZ,AI,EPDF,EPI,EPSF,EPSI,PCT,PDFA,PICT,PS',
                                         ),
                                         // Size
                                         'size' => array(
                                             'argument' => 's',
                                             'type' => 'value',
-                                            'defaultValue' => '300x300>',
+                                            'value' => '300x300>',
                                         ),
                                         // Density (output)
                                         'density' => array(
                                             'argument' => 'd',
                                             'type' => 'value',
-                                            'defaultValue' => 72,
+                                            'value' => 72,
                                         ),
                                         // Quality
                                         'quality' => array(
                                             'argument' => 'q',
                                             'type' => 'value',
-                                            'defaultValue' => 80,
+                                            'value' => 80,
                                         ),
                                         // Background
                                         'background' => array(
                                             'argument' => 'b',
                                             'type' => 'value',
-                                            'defaultValue' => 'white',
+                                            'value' => 'white',
                                         ),
                                         // Alpha
                                         'alpha' => array(
                                             'argument' => 'a',
                                             'type' => 'value',
-                                            'defaultValue' => 'remove',
+                                            'value' => 'remove',
                                         ),
                                         // Output file
                                         'output_file' => array(
                                             'argument' => 'o',
                                             'type' => 'value',
-                                            'defaultValue' => 'output.png',
+                                            'value' => 'output.png',
                                         ),
                                     ),
                                 ),

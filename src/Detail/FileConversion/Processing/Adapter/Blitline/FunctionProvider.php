@@ -2,10 +2,8 @@
 
 namespace Detail\FileConversion\Processing\Adapter\Blitline;
 
-use Zend\ServiceManager\AbstractFactoryInterface;
 use Zend\ServiceManager\AbstractPluginManager;
 
-use Detail\FileConversion\Factory\Processing\Adapter\Blitline\FunctionAbstractFactory;
 use Detail\FileConversion\Processing\Exception;
 
 /**
@@ -16,13 +14,6 @@ use Detail\FileConversion\Processing\Exception;
 class FunctionProvider extends AbstractPluginManager implements
     FunctionProviderInterface
 {
-    /**
-     * @var AbstractFactoryInterface[]
-     */
-    protected $abstractFactories = array(
-        FunctionAbstractFactory::CLASS,
-    );
-
     /**
      * Whether or not to share by default
      *
