@@ -15,6 +15,20 @@ return array(
                 'blitline' => array(
                     'options' => array(
                     ),
+                    // Function presets stored by action name
+                    'functions' => array(
+                        'thumbnail' => array(
+                            'function' => 'script',
+                            'params' => array(
+                                'files' => array(
+                                    // The script
+                                    'https://raw.githubusercontent.com/detailnet/imagemagick-scripts/master/convert_image.sh',
+                                    // The target color profile for the script
+                                    'https://raw.githubusercontent.com/detailnet/imagemagick-scripts/master/profiles/sRGB.icm',
+                                ),
+                            ),
+                        ),
+                    ),
                     'job_creator' => 'Job\Creator\Class',
                 ),
                 'internal' => array(

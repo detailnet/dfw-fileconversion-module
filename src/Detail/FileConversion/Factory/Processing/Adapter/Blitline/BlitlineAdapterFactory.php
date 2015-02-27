@@ -1,14 +1,14 @@
 <?php
 
-namespace Detail\FileConversion\Factory\Processing\Adapter;
+namespace Detail\FileConversion\Factory\Processing\Adapter\Blitline;
 
 use Zend\ServiceManager\FactoryInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
 use Zend\ServiceManager\ServiceLocatorAwareInterface;
 
-use Detail\FileConversion\Processing\Adapter\InternalAdapter as Adapter;
+use Detail\FileConversion\Processing\Adapter\Blitline\BlitlineAdapter as Adapter;
 
-class InternalAdapterFactory implements FactoryInterface
+class BlitlineAdapterFactory implements FactoryInterface
 {
     /**
      * {@inheritDoc}
@@ -25,17 +25,19 @@ class InternalAdapterFactory implements FactoryInterface
 
         $taskProcessingOptions = $moduleOptions->getTaskProcessor();
 
-        /** @var \Detail\FileConversion\Options\Processing\Adapter\GenericAdapterOptions $adapterOptions */
+        /** @var \Detail\FileConversion\Options\Processing\Adapter\Blitline\BlitlineAdapterOptions $adapterOptions */
         $adapterOptions = $taskProcessingOptions->getAdapter(
-            'internal',
-            'Detail\FileConversion\Options\Processing\Adapter\GenericAdapterOptions'
+            'blitline',
+            'Detail\FileConversion\Options\Processing\Adapter\Blitline\BlitlineAdapterOptions'
         );
 
-        /** @var \Detail\FileConversion\Client\FileConversionClient $client */
+        /** @var \Detail\Blitline\Client\BlitlineClient $client */
         $client = $serviceLocator->get($adapterOptions->getClient());
 
-        /** @var \Detail\FileConversion\Processing\Adapter\InternalJobCreatorInterface $jobCreator */
-        $jobCreator = $serviceLocator->get($adapterOptions->getJobCreator());
+        $jobCreationOptions = $adapterOptions->getJobCreation();
+
+        /** @var \Detail\FileConversion\Processing\Adapter\Blitline\BlitlineJobCreatorInterface $jobCreator */
+        $jobCreator = $serviceLocator->get($jobCreationOptions->getCreator()); /** @todo We should check if it is configured... */
 
         $adapter = new Adapter($client, $jobCreator, $adapterOptions->getOptions());
 
