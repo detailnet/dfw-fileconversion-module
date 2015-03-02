@@ -17,11 +17,6 @@ class GenericAdapterOptions extends AbstractOptions
     protected $options = array();
 
     /**
-     * @var string
-     */
-    protected $jobCreator;
-
-    /**
      * @return string
      */
     public function getClient()
@@ -51,21 +46,5 @@ class GenericAdapterOptions extends AbstractOptions
     public function setOptions(array $options)
     {
         $this->options = $options;
-    }
-
-    /**
-     * @return string
-     */
-    public function getJobCreator()
-    {
-        return $this->jobCreator;
-    }
-
-    /**
-     * @param string $jobCreator
-     */
-    public function setJobCreator($jobCreator)
-    {
-        $this->jobCreator = $jobCreator;
     }
 }

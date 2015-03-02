@@ -15,12 +15,51 @@ return array(
                 'blitline' => array(
                     'options' => array(
                     ),
-                    'job_creator' => 'Job\Creator\Class',
+                    'job_creation' => array(
+                        'creator' => 'Job/Provider/Class',
+                        // Function presets stored by action name
+                        'functions' => array(
+                            'your-action-name' => array(
+                                'function' => 'Detail\FileConversion\Processing\Adapter\Blitline\Func\ScriptFunction',
+                                'options' => array(
+                                    'files' => array(
+                                        // The script
+                                        'http://url.of/your-script.sh',
+                                        // The target color profile for the script
+                                        'https://raw.githubusercontent.com/detailnet/imagemagick-scripts/master/profiles/sRGB.icm',
+                                    ),
+                                    // See:
+                                    // - http://www.blitline.com/docs/scripts
+                                    //   For usage of the script function
+                                    // - https://github.com/detailnet/imagemagick-scripts
+                                    //   For usage of the conversion script
+                                    'executable' => 'your-script.sh',
+                                    // Key is the option name; order is relevant for building the command
+                                    'executable_options' => array(
+                                        // Input file
+                                        'input_file' => array(
+                                            'argument' => 'i',
+                                            'type' => 'value',
+                                            'value' => 'input.png',
+                                        ),
+                                        // Output file
+                                        'output_file' => array(
+                                            'argument' => 'o',
+                                            'type' => 'value',
+                                            'value' => 'output.png',
+                                        ),
+                                    ),
+                                ),
+                            ),
+                        ),
+                    ),
                 ),
                 'internal' => array(
                     'options' => array(
                     ),
-                    'job_creator' => 'Job\Creator\Class',
+                    'job_creation' => array(
+                        'creator' => 'Job/Provider/Class',
+                    ),
                 ),
             ),
             'pause_on_incident' => '5 minutes',
