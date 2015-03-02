@@ -39,7 +39,7 @@ class InternalAdapterFactory implements FactoryInterface
         $jobCreatorClass = $jobCreationOptions->getCreator();
 
         if (!$jobCreatorClass) {
-            throw new Exception\ConfigException('No Blitline job creator class defined');
+            throw new Exception\ConfigException('No DWS-FileConversion job creator class defined');
         }
 
         /** @var \Detail\FileConversion\Processing\Adapter\Internal\InternalJobCreatorInterface $jobCreator */

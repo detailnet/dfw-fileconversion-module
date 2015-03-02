@@ -57,7 +57,9 @@ return array(
                 'internal' => array(
                     'options' => array(
                     ),
-                    'job_creator' => 'Job\Creator\Class',
+                    'job_creation' => array(
+                        'creator' => 'Job/Provider/Class',
+                    ),
                 ),
             ),
             'pause_on_incident' => '5 minutes',

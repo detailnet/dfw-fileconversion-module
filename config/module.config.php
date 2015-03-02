@@ -3,7 +3,6 @@
 return array(
     'service_manager' => array(
         'abstract_factories' => array(
-//            'Detail\FileConversion\Factory\Processing\Adapter\Blitline\BlitlineJobCreatorAbstractFactory',
         ),
         'aliases' => array(
         ),
@@ -130,7 +129,9 @@ return array(
                     'client' => 'Detail\FileConversion\Client\FileConversionClient',
                     'options' => array(
                     ),
-//                    'job_creator' => '',
+                    'job_creation' => array(
+//                        'creator' => '',
+                    ),
                 ),
             ),
             'pause_on_incident' => false,
