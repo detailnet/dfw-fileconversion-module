@@ -82,7 +82,7 @@ return array(
                                         'vector_formats' => array(
                                             'argument' => 'fv',
                                             'type' => 'value',
-                                            'value' => 'MSVG,SVG,SVGZ,AI,EPDF,EPI,EPSF,EPSI,PCT,PDFA,PICT,PS',
+                                            'value' => 'MSVG,SVG,SVGZ,AI,EPI,EPSF,EPSI,PCT,PDFA,PICT,PS',
                                         ),
                                         // Size
                                         'size' => array(
