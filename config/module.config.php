@@ -117,7 +117,7 @@ return array(
                                         'output_file' => array(
                                             'argument' => 'o',
                                             'type' => 'value',
-                                            'value' => 'output.png',
+                                            'value' => 'jpg:output.png',
                                         ),
                                     ),
                                 ),
