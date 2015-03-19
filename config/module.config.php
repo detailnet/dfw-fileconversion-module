@@ -50,6 +50,8 @@ return array(
                                         'script' => 'https://raw.githubusercontent.com/detailnet/imagemagick-scripts/master/convert_image.sh',
                                         // The target color profile for the script
                                         'srgb_profile' => 'https://raw.githubusercontent.com/detailnet/imagemagick-scripts/master/profiles/sRGB.icm',
+                                        // The default CMYK source color profile for the script
+                                        'cmyk_profile' => 'https://raw.githubusercontent.com/detailnet/imagemagick-scripts/master/profiles/Apple_Generic_CMYK_Profile.icc',
                                     ),
                                     // See:
                                     // - http://www.blitline.com/docs/scripts
@@ -67,9 +69,15 @@ return array(
                                         ),
                                         // Target profile
                                         'target_profile_file' => array(
-                                            'argument' => 't',
+                                            'argument' => 'pt',
                                             'type' => 'value',
                                             'value' => 'sRGB.icm', // Make sure it's available via "files"
+                                        ),
+                                        // Source profile for CMYK images without profile
+                                        'cmyk_source_profile_file' => array(
+                                            'argument' => 'psc',
+                                            'type' => 'value',
+                                            'value' => 'Apple_Generic_CMYK_Profile.icc', // Make sure it's available via "files"
                                         ),
                                         // Page
                                         'page' => array(
@@ -77,11 +85,17 @@ return array(
                                             'type' => 'value',
                                             'value' => 0,
                                         ),
+                                        // PostScript formats
+                                        'postscript_formats' => array(
+                                            'argument' => 'fp',
+                                            'type' => 'value',
+                                            'value' => 'EPDF,EPI,EPS,EPSF,EPSI,PDF,PDFA,PS',
+                                        ),
                                         // Vector formats
                                         'vector_formats' => array(
                                             'argument' => 'fv',
                                             'type' => 'value',
-                                            'value' => 'MSVG,SVG,SVGZ,AI,EPI,EPSF,EPSI,PCT,PDFA,PICT,PS',
+                                            'value' => 'MSVG,SVG,SVGZ,AI,PCT,PICT',
                                         ),
                                         // Size
                                         'size' => array(
