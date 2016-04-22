@@ -4,17 +4,19 @@ namespace DetailTest\FileConversion\Options\Job;
 
 use DetailTest\FileConversion\Options\OptionsTestCase;
 
+use Detail\FileConversion\Options\Job\JobBuilderOptions;
+
 class JobBuilderOptionsTest extends OptionsTestCase
 {
     /**
-     * @var \Detail\FileConversion\Options\Job\JobBuilderOptions
+     * @var JobBuilderOptions
      */
     protected $options;
 
     protected function setUp()
     {
         $this->options = $this->getOptions(
-            'Detail\FileConversion\Options\Job\JobBuilderOptions',
+            JobBuilderOptions::CLASS,
             array(
                 'getDefaultOptions',
                 'setDefaultOptions',

@@ -4,17 +4,19 @@ namespace DetailTest\FileConversion\Options\Client;
 
 use DetailTest\FileConversion\Options\OptionsTestCase;
 
+use Detail\FileConversion\Options\Client\FileConversionClientOptions;
+
 class FileConversionClientOptionsTest extends OptionsTestCase
 {
     /**
-     * @var \Detail\FileConversion\Options\Client\FileConversionClientOptions
+     * @var FileConversionClientOptions
      */
     protected $options;
 
     protected function setUp()
     {
         $this->options = $this->getOptions(
-            'Detail\FileConversion\Options\Client\FileConversionClientOptions',
+            FileConversionClientOptions::CLASS,
             array(
                 'getBaseUrl',
                 'setBaseUrl',

@@ -6,7 +6,9 @@ use PHPUnit_Framework_TestCase as TestCase;
 
 use Zend\ServiceManager\ServiceManager;
 
+use Detail\FileConversion\Exception;
 use Detail\FileConversion\Factory\Options\ModuleOptionsFactory;
+use Detail\FileConversion\Options;
 
 class ModuleOptionsFactoryTest extends TestCase
 {
@@ -14,12 +16,12 @@ class ModuleOptionsFactoryTest extends TestCase
     {
         $moduleOptions = $this->createModuleOptions(array('detail_fileconversion' => array()));
 
-        $this->assertInstanceOf('Detail\FileConversion\Options\ModuleOptions', $moduleOptions);
+        $this->assertInstanceOf(Options\ModuleOptions::CLASS, $moduleOptions);
     }
 
     public function testCreateServiceThrowsExceptionForInvalidConfiguration()
     {
-        $this->setExpectedException('Detail\FileConversion\Exception\ConfigException');
+        $this->setExpectedException(Exception\ConfigException::CLASS);
         $this->createModuleOptions();
     }
 

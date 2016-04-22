@@ -2,17 +2,19 @@
 
 namespace DetailTest\FileConversion\Options;
 
+use Detail\FileConversion\Options;
+
 class ModuleOptionsTest extends OptionsTestCase
 {
     /**
-     * @var \Detail\FileConversion\Options\ModuleOptions
+     * @var Options\ModuleOptions
      */
     protected $options;
 
     protected function setUp()
     {
         $this->options = $this->getOptions(
-            'Detail\FileConversion\Options\ModuleOptions',
+            Options\ModuleOptions::CLASS,
             array(
                 'getClient',
                 'setClient',
@@ -32,7 +34,7 @@ class ModuleOptionsTest extends OptionsTestCase
 
         $client = $this->options->getClient();
 
-        $this->assertInstanceOf('Detail\FileConversion\Options\Client\FileConversionClientOptions', $client);
+        $this->assertInstanceOf(Options\Client\FileConversionClientOptions::CLASS, $client);
         $this->assertEquals($clientOptions['base_url'], $client->getBaseUrl());
     }
 
@@ -46,7 +48,7 @@ class ModuleOptionsTest extends OptionsTestCase
 
         $jobBuilder = $this->options->getJobBuilder();
 
-        $this->assertInstanceOf('Detail\FileConversion\Options\Job\JobBuilderOptions', $jobBuilder);
+        $this->assertInstanceOf(Options\Job\JobBuilderOptions::CLASS, $jobBuilder);
         $this->assertEquals($jobBuilderOptions['default_options'], $jobBuilder->getDefaultOptions());
     }
 }

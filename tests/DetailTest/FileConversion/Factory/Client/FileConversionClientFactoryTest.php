@@ -6,7 +6,9 @@ use PHPUnit_Framework_TestCase as TestCase;
 
 use Zend\ServiceManager\ServiceManager;
 
+use Detail\FileConversion\Client;
 use Detail\FileConversion\Factory\Client\FileConversionClientFactory;
+use Detail\FileConversion\Options;
 
 class FileConversionClientFactoryTest extends TestCase
 {
@@ -14,29 +16,29 @@ class FileConversionClientFactoryTest extends TestCase
     {
         $client = $this->createFileConversionClient();
 
-        $this->assertInstanceOf('Detail\FileConversion\Client\FileConversionClient', $client);
-        $this->assertEquals('some-url', $client->getBaseUrl());
+        $this->assertInstanceOf(Client\FileConversionClient::CLASS, $client);
+        $this->assertEquals('some-url', $client->getServiceUrl());
     }
 
     protected function createFileConversionClient()
     {
-        $clientOptions = $this->getMock('Detail\FileConversion\Options\Client\FileConversionClientOptions');
+        $clientOptions = $this->getMock(Options\Client\FileConversionClientOptions::CLASS);
         $clientOptions
             ->expects($this->any())
             ->method('toArray')
             ->will($this->returnValue(array('base_url' => 'some-url')));
 
-        $moduleOptions = $this->getMock('Detail\FileConversion\Options\ModuleOptions');
+        $moduleOptions = $this->getMock(Options\ModuleOptions::CLASS);
         $moduleOptions
             ->expects($this->any())
             ->method('getClient')
             ->will($this->returnValue($clientOptions));
 
-        $jobBuilder = $this->getMock('Detail\FileConversion\Client\Job\JobBuilder');
+        $jobBuilder = $this->getMock(Client\Job\JobBuilder::CLASS);
 
         $serviceManager = new ServiceManager();
-        $serviceManager->setService('Detail\FileConversion\Options\ModuleOptions', $moduleOptions);
-        $serviceManager->setService('Detail\FileConversion\Client\Job\JobBuilder', $jobBuilder);
+        $serviceManager->setService(Options\ModuleOptions::CLASS, $moduleOptions);
+        $serviceManager->setService(Client\Job\JobBuilder::CLASS, $jobBuilder);
 
         $factory = new FileConversionClientFactory();
 

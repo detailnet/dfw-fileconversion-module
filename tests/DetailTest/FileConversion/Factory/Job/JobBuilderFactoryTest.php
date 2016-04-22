@@ -6,7 +6,9 @@ use PHPUnit_Framework_TestCase as TestCase;
 
 use Zend\ServiceManager\ServiceManager;
 
+use Detail\FileConversion\Client;
 use Detail\FileConversion\Factory\Client\Job\JobBuilderFactory;
+use Detail\FileConversion\Options;
 
 class JobBuilderFactoryTest extends TestCase
 {
@@ -14,7 +16,7 @@ class JobBuilderFactoryTest extends TestCase
     {
         $jobBuilder = $this->createJobBuilder();
 
-        $this->assertInstanceOf('Detail\FileConversion\Client\Job\JobBuilder', $jobBuilder);
+        $this->assertInstanceOf(Client\Job\JobBuilder::CLASS, $jobBuilder);
         $this->assertEquals(array('key' => 'value'), $jobBuilder->getDefaultOptions());
         $this->assertEquals('SomeJobClass', $jobBuilder->getJobClass());
         $this->assertEquals('SomeActionClass', $jobBuilder->getActionClass());
@@ -22,7 +24,7 @@ class JobBuilderFactoryTest extends TestCase
 
     protected function createJobBuilder()
     {
-        $jobBuilderOptions = $this->getMock('Detail\FileConversion\Options\Job\JobBuilderOptions');
+        $jobBuilderOptions = $this->getMock(Options\Job\JobBuilderOptions::CLASS);
         $jobBuilderOptions
             ->expects($this->any())
             ->method('getDefaultOptions')
@@ -38,14 +40,14 @@ class JobBuilderFactoryTest extends TestCase
             ->method('getActionClass')
             ->will($this->returnValue('SomeActionClass'));
 
-        $moduleOptions = $this->getMock('Detail\FileConversion\Options\ModuleOptions');
+        $moduleOptions = $this->getMock(Options\ModuleOptions::CLASS);
         $moduleOptions
             ->expects($this->any())
             ->method('getJobBuilder')
             ->will($this->returnValue($jobBuilderOptions));
 
         $serviceManager = new ServiceManager();
-        $serviceManager->setService('Detail\FileConversion\Options\ModuleOptions', $moduleOptions);
+        $serviceManager->setService(Options\ModuleOptions::CLASS, $moduleOptions);
 
         $factory = new JobBuilderFactory();
 
