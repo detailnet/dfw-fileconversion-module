@@ -133,6 +133,14 @@ return array(
                                             'type' => 'value',
                                             'value' => 'jpg:output.png',
                                         ),
+                                        // The script convert_image.sh passes the additional options not handled by himself
+                                        // to the underlying imagemagick conversion
+                                        // Strip color profile
+                                        'strip_color_profile' => array(
+                                            'argument' => 'strip',
+                                            'type' => 'plain',
+                                            'enabled' => false,
+                                        ),
                                     ),
                                 ),
                             ),
