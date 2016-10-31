@@ -138,8 +138,8 @@ return array(
                                         // Strip color profile
                                         'strip_color_profile' => array(
                                             'argument' => 'strip',
-                                            'type' => 'flag',
-                                            'value' => false, // For 'false' default is not needed
+                                            'type' => 'plain',
+                                            'enabled' => false,
                                         ),
                                     ),
                                 ),
