@@ -133,6 +133,14 @@ return array(
                                             'type' => 'value',
                                             'value' => 'jpg:output.png',
                                         ),
+                                        // The script convert_image.sh passes the additional options not handled by himself
+                                        // to the underlying ImageMagick's conversion
+                                        // Strip all profiles before output generation (hast to be the very last command)
+                                        'strip' => array(
+                                            'argument' => 'strip',
+                                            'type' => 'plain',
+                                            'enabled' => false,
+                                        ),
                                     ),
                                 ),
                             ),
