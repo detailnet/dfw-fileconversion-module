@@ -1,33 +1,33 @@
 <?php
 
-return array(
-    'detail_fileconversion' => array(
-        'client' => array(
+return [
+    'detail_fileconversion' => [
+        'client' => [
 //            'base_url' => 'http://dws-fileconversion.public.web01.detailnet.me/api/',
             'dws_app_id' => 'change_me', // Only required for dws-fileconversion in production
             'dws_app_key' => 'change_me', // Only required for dws-fileconversion in production
-        ),
-        'job_builder' => array(
-            'default_options' => array(),
-        ),
-        'task_processor' => array(
-            'adapters' => array(
-                'blitline' => array(
-                    'options' => array(
-                    ),
-                    'job_creation' => array(
+        ],
+        'job_builder' => [
+            'default_options' => [],
+        ],
+        'task_processor' => [
+            'adapters' => [
+                'blitline' => [
+                    'options' => [
+                    ],
+                    'job_creation' => [
                         'creator' => 'Job/Provider/Class',
                         // Function presets stored by action name
-                        'functions' => array(
-                            'your-action-name' => array(
+                        'functions' => [
+                            'your-action-name' => [
                                 'function' => 'Detail\FileConversion\Processing\Adapter\Blitline\Func\ScriptFunction',
-                                'options' => array(
-                                    'files' => array(
+                                'options' => [
+                                    'files' => [
                                         // The script
                                         'http://url.of/your-script.sh',
                                         // The target color profile for the script
                                         'https://raw.githubusercontent.com/detailnet/imagemagick-scripts/master/profiles/sRGB.icm',
-                                    ),
+                                    ],
                                     // See:
                                     // - http://www.blitline.com/docs/scripts
                                     //   For usage of the script function
@@ -35,34 +35,34 @@ return array(
                                     //   For usage of the conversion script
                                     'executable' => 'your-script.sh',
                                     // Key is the option name; order is relevant for building the command
-                                    'executable_options' => array(
+                                    'executable_options' => [
                                         // Input file
-                                        'input_file' => array(
+                                        'input_file' => [
                                             'argument' => 'i',
                                             'type' => 'value',
                                             'value' => 'input.png',
-                                        ),
+                                        ],
                                         // Output file
-                                        'output_file' => array(
+                                        'output_file' => [
                                             'argument' => 'o',
                                             'type' => 'value',
                                             'value' => 'output.png',
-                                        ),
-                                    ),
-                                ),
-                            ),
-                        ),
-                    ),
-                ),
-                'internal' => array(
-                    'options' => array(
-                    ),
-                    'job_creation' => array(
+                                        ],
+                                    ],
+                                ],
+                            ],
+                        ],
+                    ],
+                ],
+                'internal' => [
+                    'options' => [
+                    ],
+                    'job_creation' => [
                         'creator' => 'Job/Provider/Class',
-                    ),
-                ),
-            ),
+                    ],
+                ],
+            ],
             'pause_on_incident' => '5 minutes',
-        ),
-    ),
-);
+        ],
+    ],
+];

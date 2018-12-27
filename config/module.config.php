@@ -1,58 +1,59 @@
 <?php
 
-return array(
-    'service_manager' => array(
-        'abstract_factories' => array(
-        ),
-        'aliases' => array(
-        ),
-        'invokables' => array(
-        ),
-        'factories' => array(
-            'Detail\FileConversion\Client\FileConversionClient' => 'Detail\FileConversion\Factory\Client\FileConversionClientFactory',
-            'Detail\FileConversion\Client\Job\JobBuilder' => 'Detail\FileConversion\Factory\Client\Job\JobBuilderFactory',
-            'Detail\FileConversion\Options\ModuleOptions' => 'Detail\FileConversion\Factory\Options\ModuleOptionsFactory',
-            'Detail\FileConversion\Processing\Adapter\Blitline\FunctionProvider' => 'Detail\FileConversion\Factory\Processing\Adapter\Blitline\FunctionProviderFactory',
-            'Detail\FileConversion\Processing\TaskProcessor' => 'Detail\FileConversion\Factory\Processing\TaskProcessorFactory',
-        ),
-        'initializers' => array(
-        ),
-        'shared' => array(
-        ),
-    ),
-    'detail_fileconversion' => array(
-        'client' => array(
-            'base_url' => 'http://fileconversion.dws.detailnet.ch/api',
-        ),
-        'job_builder' => array(
-            'default_options' => array(),
-        ),
-        'task_processor' => array(
+use Detail\FileConversion;
+use Detail\FileConversion\Factory;
+
+$scriptsUrl = 'https://raw.githubusercontent.com/detailnet/imagemagick-scripts/master/';
+
+return [
+    'service_manager' => [
+        'abstract_factories' => [],
+        'aliases' => [],
+        'invokables' => [],
+        'factories' => [
+            FileConversion\Client\FileConversionClient::CLASS => Factory\Client\FileConversionClientFactory::CLASS,
+            FileConversion\Client\Job\JobBuilder::CLASS => Factory\Client\Job\JobBuilderFactory::CLASS,
+            FileConversion\Options\ModuleOptions::CLASS => Factory\Options\ModuleOptionsFactory::CLASS,
+            FileConversion\Processing\Adapter\Blitline\FunctionProvider::CLASS
+                => Factory\Processing\Adapter\Blitline\FunctionProviderFactory::CLASS,
+            FileConversion\Processing\TaskProcessor::CLASS =>Factory\Processing\TaskProcessorFactory::CLASS,
+        ],
+        'initializers' => [],
+        'shared' => [],
+    ],
+    'detail_fileconversion' => [
+        'client' => [
+//            'base_uri' => null,
+        ],
+        'job_builder' => [
+            'default_options' => [],
+        ],
+        'task_processor' => [
             'default_adapter' => 'internal',
-            'adapter_factories' => array(
-                'blitline' => 'Detail\FileConversion\Factory\Processing\Adapter\Blitline\BlitlineAdapterFactory',
-                'internal' => 'Detail\FileConversion\Factory\Processing\Adapter\Internal\InternalAdapterFactory',
-            ),
-            'adapters' => array(
-                'blitline' => array(
-                    'client' => 'Detail\Blitline\Client\BlitlineClient',
-                    'options' => array(
-                    ),
-                    'job_creation' => array(
+            'adapter_factories' => [
+                'blitline' => Factory\Processing\Adapter\Blitline\BlitlineAdapterFactory::CLASS,
+                'internal' => Factory\Processing\Adapter\Internal\InternalAdapterFactory::CLASS,
+            ],
+            'adapters' => [
+                'blitline' => [
+                    'client' => Detail\Blitline\BlitlineClient::CLASS,
+                    'options' => [
+                    ],
+                    'job_creation' => [
 //                        'creator' => '',
                         // Function presets stored by action name
-                        'functions' => array(
-                            'thumbnail' => array(
-                                'function' => 'Detail\FileConversion\Processing\Adapter\Blitline\Func\ScriptFunction',
-                                'options' => array(
-                                    'files' => array(
+                        'functions' => [
+                            'thumbnail' => [
+                                'function' => FileConversion\Processing\Adapter\Blitline\Func\ScriptFunction::CLASS,
+                                'options' => [
+                                    'files' => [
                                         // The script
-                                        'script' => 'https://raw.githubusercontent.com/detailnet/imagemagick-scripts/master/convert_image.sh',
+                                        'script' => $scriptsUrl . 'convert_image.sh',
                                         // The target color profile for the script
-                                        'srgb_profile' => 'https://raw.githubusercontent.com/detailnet/imagemagick-scripts/master/profiles/sRGB.icm',
+                                        'srgb_profile' => $scriptsUrl . 'profiles/sRGB.icm',
                                         // The default CMYK source color profile for the script
-                                        'cmyk_profile' => 'https://raw.githubusercontent.com/detailnet/imagemagick-scripts/master/profiles/Apple_Generic_CMYK_Profile.icc',
-                                    ),
+                                        'cmyk_profile' => $scriptsUrl . 'profiles/Apple_Generic_CMYK_Profile.icc',
+                                    ],
                                     // See:
                                     // - http://www.blitline.com/docs/scripts
                                     //   For usage of the script function
@@ -60,103 +61,103 @@ return array(
                                     //   For usage of the conversion script
                                     'executable' => 'convert_image.sh',
                                     // Key is the option name; order is relevant for building the command
-                                    'executable_options' => array(
+                                    'executable_options' => [
                                         // Input file
-                                        'input_file' => array(
+                                        'input_file' => [
                                             'argument' => 'i',
                                             'type' => 'value',
                                             'value' => 'input.png',
-                                        ),
+                                        ],
                                         // Target profile
-                                        'target_profile_file' => array(
+                                        'target_profile_file' => [
                                             'argument' => 'pt',
                                             'type' => 'value',
                                             'value' => 'sRGB.icm', // Make sure it's available via "files"
-                                        ),
+                                        ],
                                         // Source profile for CMYK images without profile
-                                        'cmyk_source_profile_file' => array(
+                                        'cmyk_source_profile_file' => [
                                             'argument' => 'psc',
                                             'type' => 'value',
                                             'value' => 'Apple_Generic_CMYK_Profile.icc', // Make sure it's available via "files"
-                                        ),
+                                        ],
                                         // Page
-                                        'page' => array(
+                                        'page' => [
                                             'argument' => 'p',
                                             'type' => 'value',
                                             'value' => 0,
-                                        ),
+                                        ],
                                         // PostScript formats
-                                        'postscript_formats' => array(
+                                        'postscript_formats' => [
                                             'argument' => 'fp',
                                             'type' => 'value',
                                             'value' => 'EPDF,EPI,EPS,EPSF,EPSI,PDF,PDFA,PS',
-                                        ),
+                                        ],
                                         // Vector formats
-                                        'vector_formats' => array(
+                                        'vector_formats' => [
                                             'argument' => 'fv',
                                             'type' => 'value',
                                             'value' => 'MSVG,SVG,SVGZ,AI,PCT,PICT',
-                                        ),
+                                        ],
                                         // Size
-                                        'size' => array(
+                                        'size' => [
                                             'argument' => 's',
                                             'type' => 'value',
                                             'value' => '300x300>',
-                                        ),
+                                        ],
                                         // Density (output)
-                                        'density' => array(
+                                        'density' => [
                                             'argument' => 'd',
                                             'type' => 'value',
                                             'value' => 72,
-                                        ),
+                                        ],
                                         // Quality
-                                        'quality' => array(
+                                        'quality' => [
                                             'argument' => 'q',
                                             'type' => 'value',
                                             'value' => 80,
-                                        ),
+                                        ],
                                         // Background
-                                        'background' => array(
+                                        'background' => [
                                             'argument' => 'b',
                                             'type' => 'value',
                                             'value' => 'white',
-                                        ),
+                                        ],
                                         // Alpha
-                                        'alpha' => array(
+                                        'alpha' => [
                                             'argument' => 'a',
                                             'type' => 'value',
                                             'value' => 'remove',
-                                        ),
+                                        ],
                                         // Output file
-                                        'output_file' => array(
+                                        'output_file' => [
                                             'argument' => 'o',
                                             'type' => 'value',
                                             'value' => 'jpg:output.png',
-                                        ),
+                                        ],
                                         // The script convert_image.sh passes the additional options not handled by himself
                                         // to the underlying ImageMagick's conversion
                                         // Strip all profiles before output generation (hast to be the very last command)
-                                        'strip' => array(
+                                        'strip' => [
                                             'argument' => 'strip',
                                             'type' => 'plain',
                                             'enabled' => false,
-                                        ),
-                                    ),
-                                ),
-                            ),
-                        ),
-                    ),
-                ),
-                'internal' => array(
-                    'client' => 'Detail\FileConversion\Client\FileConversionClient',
-                    'options' => array(
-                    ),
-                    'job_creation' => array(
+                                        ],
+                                    ],
+                                ],
+                            ],
+                        ],
+                    ],
+                ],
+                'internal' => [
+                    'client' => FileConversion\Client\FileConversionClient::CLASS,
+                    'options' => [
+                    ],
+                    'job_creation' => [
 //                        'creator' => '',
-                    ),
-                ),
-            ),
+                    ],
+                ],
+            ],
             'pause_on_incident' => false,
-        ),
-    ),
-);
+        ],
+    ],
+];

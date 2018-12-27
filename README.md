@@ -1,4 +1,4 @@
-# Zend Framework 2 Module for dfw-fileconversion
+# Zend Framework Module for dfw-fileconversion
 
 [![Build Status](https://travis-ci.org/detailnet/dfw-fileconversion-module.svg?branch=master)](https://travis-ci.org/detailnet/dfw-fileconversion-module)
 [![Coverage Status](https://img.shields.io/coveralls/detailnet/dfw-fileconversion-module.svg)](https://coveralls.io/r/detailnet/dfw-fileconversion-module)
@@ -6,7 +6,7 @@
 [![Latest Unstable Version](https://poser.pugx.org/detailnet/dfw-fileconversion-module/v/unstable.svg)](https://packagist.org/packages/detailnet/dfw-fileconversion-module)
 
 ## Introduction
-This module integrates the [DETAIL Framework library for file conversion](https://github.com/detailnet/dfw-fileconversion) with [Zend Framework 2](https://github.com/zendframework/zf2).
+This module integrates the [DETAIL Framework library for file conversion](https://github.com/detailnet/dfw-fileconversion) with [Zend Framework](https://github.com/zendframework/zendframework).
 
 ## Requirements
 [Zend Framework 2 Skeleton Application](http://www.github.com/zendframework/ZendSkeletonApplication) (or compatible architecture)
@@ -21,7 +21,7 @@ Install the module through [Composer](http://getcomposer.org/) using the followi
      ```json
      {
          "require": {
-             "detailnet/dfw-fileconversion-module": "1.x-dev"
+             "detailnet/blitline-module": "^1.0"
          }
      }
      ```
@@ -40,6 +40,3 @@ Install the module through [Composer](http://getcomposer.org/) using the followi
 
   7. Copy `vendor/detailnet/dfw-fileconversion-module/config/detail_fileconversion.local.php.dist` into your application's
      `config/autoload` directory, rename it to `detail_fileconversion.local.php` and make the appropriate changes.
-
-## Usage
-tbd
