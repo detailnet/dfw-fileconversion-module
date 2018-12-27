@@ -9,7 +9,7 @@
 This module integrates the [DETAIL Framework library for file conversion](https://github.com/detailnet/dfw-fileconversion) with [Zend Framework](https://github.com/zendframework/zendframework).
 
 ## Requirements
-[Zend Framework 2 Skeleton Application](http://www.github.com/zendframework/ZendSkeletonApplication) (or compatible architecture)
+[Zend Framework Skeleton Application](http://www.github.com/zendframework/ZendSkeletonApplication) (or compatible architecture)
 
 ## Installation
 Install the module through [Composer](http://getcomposer.org/) using the following steps:
