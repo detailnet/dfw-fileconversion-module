@@ -7,64 +7,64 @@ use Zend\Stdlib\AbstractOptions;
 class FileConversionClientOptions extends AbstractOptions
 {
     /**
-     * @var string
+     * @var string|null
      */
-    protected $baseUrl;
+    protected $baseUri;
 
     /**
-     * @var string
+     * @var string|null
      */
     protected $dwsAppId;
 
     /**
-     * @var string
+     * @var string|null
      */
     protected $dwsAppKey;
 
+    public function getBaseUri(): ?string
+    {
+        return $this->baseUri;
+    }
+
+    public function setBaseUri(string $baseUri): void
+    {
+        $this->baseUri = $baseUri;
+    }
+
     /**
      * @return string
+     * @deprecated Use {@see getBaseUri()} instead
      */
-    public function getBaseUrl()
+    public function getBaseUrl(): ?string
     {
-        return $this->baseUrl;
+        return $this->getBaseUri();
     }
 
     /**
      * @param string $baseUrl
+     * @deprecated Use {@see setBaseUri()} instead
      */
-    public function setBaseUrl($baseUrl)
+    public function setBaseUrl(string $baseUrl): void
     {
-        $this->baseUrl = $baseUrl;
+        $this->setBaseUri($baseUrl);
     }
 
-    /**
-     * @return string
-     */
-    public function getDwsAppId()
+    public function getDwsAppId(): ?string
     {
         return $this->dwsAppId;
     }
 
-    /**
-     * @param string $dwsAppId
-     */
-    public function setDwsAppId($dwsAppId)
+    public function setDwsAppId(?string $dwsAppId): void
     {
         $this->dwsAppId = $dwsAppId;
     }
 
-    /**
-     * @return string
-     */
-    public function getDwsAppKey()
+    public function getDwsAppKey(): ?string
     {
         return $this->dwsAppKey;
     }
 
-    /**
-     * @param string $dwsAppKey
-     */
-    public function setDwsAppKey($dwsAppKey)
+    public function setDwsAppKey(?string $dwsAppKey): void
     {
         $this->dwsAppKey = $dwsAppKey;
     }

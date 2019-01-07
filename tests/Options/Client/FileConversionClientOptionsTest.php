@@ -8,30 +8,40 @@ use Detail\FileConversion\Options\Client\FileConversionClientOptions;
 
 class FileConversionClientOptionsTest extends OptionsTestCase
 {
-    /**
-     * @var FileConversionClientOptions
-     */
-    protected $options;
-
-    protected function setUp()
+    public function testBaseUriCanBeSet(): void
     {
-        $this->options = $this->getOptions(
-            FileConversionClientOptions::CLASS,
-            [
-                'getBaseUrl',
-                'setBaseUrl',
-            ]
-        );
+        $uri = 'https://some.url';
+
+        $options = new FileConversionClientOptions(['base_uri' => $uri]);
+
+        $this->assertEquals($uri, $options->getBaseUri());
     }
 
-    public function testBaseUrlCanBeSet(): void
+    public function testBaseUrlIsStillSupported(): void
     {
-        $baseUrl = 'some-url';
+        $uri = 'https://some.url';
 
-        $this->assertNull($this->options->getBaseUrl());
+        $options = new FileConversionClientOptions(['base_url' => $uri]);
 
-        $this->options->setBaseUrl($baseUrl);
+        $this->assertEquals($uri, $options->getBaseUri());
+        $this->assertEquals($uri, $options->getBaseUrl());
+    }
 
-        $this->assertEquals($baseUrl, $this->options->getBaseUrl());
+    public function testDwsAppIdCanBeSet(): void
+    {
+        $id = 'some-app-id';
+
+        $options = new FileConversionClientOptions(['dws_app_id' => $id]);
+
+        $this->assertEquals($id, $options->getDwsAppId());
+    }
+
+    public function testDwsAppKeyCanBeSet(): void
+    {
+        $id = 'some-app-key';
+
+        $options = new FileConversionClientOptions(['dws_app_key' => $id]);
+
+        $this->assertEquals($id, $options->getDwsAppKey());
     }
 }
