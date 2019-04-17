@@ -44,4 +44,13 @@ class FileConversionClientOptionsTest extends OptionsTestCase
 
         $this->assertEquals($id, $options->getDwsAppKey());
     }
+
+    public function testHttpOptionsCanBeSet(): void
+    {
+        $http = ['timeout' => 30];
+
+        $options = new FileConversionClientOptions(['http_options' => $http]);
+
+        $this->assertEquals($http, $options->getHttpOptions());
+    }
 }
