@@ -28,6 +28,21 @@ class FileConversionClientFactory implements
         /** @var JobBuilder $jobBuilder */
         $jobBuilder = $container->get(JobBuilder::CLASS);
 
-        return FileConversionClient::factory($clientOptions->toArray(), $jobBuilder);
+        $options = array_merge(
+            $clientOptions->getHttpOptions(),
+            // Only pass along options which are actually set
+            array_filter(
+                [
+                    'base_uri' => $clientOptions->getBaseUri(),
+                    FileConversionClient::OPTION_APP_ID => $clientOptions->getDwsAppId(),
+                    FileConversionClient::OPTION_APP_KEY => $clientOptions->getDwsAppKey(),
+                ],
+                function ($value) {
+                    return $value !== null;
+                }
+            )
+        );
+
+        return FileConversionClient::factory($options, $jobBuilder);
     }
 }

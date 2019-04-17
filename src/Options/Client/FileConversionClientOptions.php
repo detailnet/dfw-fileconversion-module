@@ -6,20 +6,17 @@ use Zend\Stdlib\AbstractOptions;
 
 class FileConversionClientOptions extends AbstractOptions
 {
-    /**
-     * @var string|null
-     */
+    /** @var string|null */
     protected $baseUri;
 
-    /**
-     * @var string|null
-     */
+    /**  @var string|null */
     protected $dwsAppId;
 
-    /**
-     * @var string|null
-     */
+    /** @var string|null */
     protected $dwsAppKey;
+
+    /** @var array */
+    protected $httpOptions = [];
 
     public function getBaseUri(): ?string
     {
@@ -67,5 +64,15 @@ class FileConversionClientOptions extends AbstractOptions
     public function setDwsAppKey(?string $dwsAppKey): void
     {
         $this->dwsAppKey = $dwsAppKey;
+    }
+
+    public function getHttpOptions(): array
+    {
+        return $this->httpOptions;
+    }
+
+    public function setHttpOptions(array $options): void
+    {
+        $this->httpOptions = $options;
     }
 }

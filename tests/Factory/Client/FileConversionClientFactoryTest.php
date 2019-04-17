@@ -14,20 +14,29 @@ class FileConversionClientFactoryTest extends TestCase
 {
     public function testCreateService(): void
     {
-        $client = $this->createFileConversionClient();
+        $options = [
+            'base_uri' => 'https://some.url',
+            'dws_app_id' => 'some-app-id',
+            'dws_app_key' => null,
+            'http_options' => [
+                'timeout' => 123,
+                'verify' => false,
+            ],
+        ];
 
-        $this->assertInstanceOf(Client\FileConversionClient::CLASS, $client);
-        $this->assertEquals('some-url', $client->getServiceUrl());
+        $client = $this->createFileConversionClient($options);
+        $httpClient = $client->getHttpClient();
+
+        $this->assertEquals($options['base_uri'], $client->getServiceUrl());
+        $this->assertEquals($options['dws_app_id'], $client->getServiceAppId());
+        $this->assertNull($client->getServiceAppKey());
+        $this->assertEquals($options['http_options']['timeout'], $httpClient->getConfig('timeout'));
+        $this->assertEquals($options['http_options']['verify'], $httpClient->getConfig('verify'));
     }
 
-    private function createFileConversionClient(): Client\FileConversionClient
+    private function createFileConversionClient(array $clientOptions): Client\FileConversionClient
     {
-        $clientOptions = $this->getMockBuilder(Options\Client\FileConversionClientOptions::CLASS)->getMock();
-        $clientOptions
-            ->expects($this->any())
-            ->method('toArray')
-            ->will($this->returnValue(['base_uri' => 'some-url']));
-
+        $clientOptions = new Options\Client\FileConversionClientOptions($clientOptions);
         $moduleOptions = $this->getMockBuilder(Options\ModuleOptions::CLASS)->getMock();
         $moduleOptions
             ->expects($this->any())
